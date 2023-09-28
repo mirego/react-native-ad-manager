@@ -233,8 +233,10 @@ class BannerAdView extends ReactViewGroup implements AppEventListener, Lifecycle
         bundle.putString("correlator", correlator);
 
         if (this.disablePersonalizedAds) {
+            Log.i("GAM - Banner", "Requesting non-personalized ads");
             bundle.putString("npa", "1");
         } else {
+            Log.i("GAM - Banner", "Requesting personalized ads");
             bundle.putString("npa", "0");
         }
 

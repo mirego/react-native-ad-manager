@@ -263,8 +263,10 @@ public class NativeAdViewContainer extends ReactViewGroup implements AppEventLis
                     bundle.putString("correlator", correlator);
 
                     if (this.disablePersonalizedAds) {
+                        Log.i("GAM - Native", "Requesting non-personalized ads");
                         bundle.putString("npa", "1");
                     } else {
+                        Log.i("GAM - Native", "Requesting personalized ads");
                         bundle.putString("npa", "0");
                     }
                     adRequestBuilder.addNetworkExtrasBundle(AdMobAdapter.class, bundle);

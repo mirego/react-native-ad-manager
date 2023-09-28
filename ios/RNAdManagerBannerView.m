@@ -107,8 +107,10 @@
                                    nil];
 
     if (_disablePersonalizedAds) {
+        NSLog(@"[GAM - Banner] Requesting non-personalized ads");
         extras.additionalParameters = @{@"npa": @"1"};
     } else {
+        NSLog(@"[GAM - Banner] Requesting personalized ads");
         extras.additionalParameters = @{@"npa": @"0"};
     }
 

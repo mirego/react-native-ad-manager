@@ -148,8 +148,10 @@ static NSString *const kAdTypeTemplate = @"template";
                                    nil];
 
     if (_disablePersonalizedAds) {
+        NSLog(@"[GAM - Native] Requesting non-personalized ads");
         extras.additionalParameters = @{@"npa": @"1"};
     } else {
+        NSLog(@"[GAM - Native] Requesting personalized ads");
         extras.additionalParameters = @{@"npa": @"0"};
     }
 
