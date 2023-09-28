@@ -147,6 +147,12 @@ static NSString *const kAdTypeTemplate = @"template";
                                    _correlator, @"correlator",
                                    nil];
 
+    if (_disablePersonalizedAds) {
+        extras.additionalParameters = @{@"npa": @"1"};
+    } else {
+        extras.additionalParameters = @{@"npa": @"0"};
+    }
+
     [request registerAdNetworkExtras:extras];
 
     if (_targeting != nil) {
@@ -235,6 +241,11 @@ static NSString *const kAdTypeTemplate = @"template";
 - (void)setCorrelator:(NSString *)correlator
 {
     _correlator = correlator;
+}
+
+- (void)setDisablePersonalizedAds:(BOOL)disablePersonalizedAds
+{
+    _disablePersonalizedAds = disablePersonalizedAds;
 }
 
 #pragma mark GADAdLoaderDelegate implementation

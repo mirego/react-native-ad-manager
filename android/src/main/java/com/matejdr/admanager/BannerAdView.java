@@ -46,6 +46,7 @@ class BannerAdView extends ReactViewGroup implements AppEventListener, Lifecycle
     String publisherProvidedID;
     Location location;
     String correlator;
+    Boolean disablePersonalizedAds;
 
     int top;
     int left;
@@ -231,6 +232,12 @@ class BannerAdView extends ReactViewGroup implements AppEventListener, Lifecycle
         Bundle bundle = new Bundle();
         bundle.putString("correlator", correlator);
 
+        if (this.disablePersonalizedAds) {
+            bundle.putString("npa", "1");
+        } else {
+            bundle.putString("npa", "0");
+        }
+
         adRequestBuilder.addNetworkExtrasBundle(AdMobAdapter.class, bundle);
 
 
@@ -328,6 +335,10 @@ class BannerAdView extends ReactViewGroup implements AppEventListener, Lifecycle
 
     public void setCorrelator(String correlator) {
         this.correlator = correlator;
+    }
+
+    public void setDisablePersonalizedAds(Boolean disablePersonalizedAds) {
+        this.disablePersonalizedAds = disablePersonalizedAds;
     }
 
     @Override

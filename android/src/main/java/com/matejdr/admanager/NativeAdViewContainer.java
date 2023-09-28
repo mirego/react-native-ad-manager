@@ -61,6 +61,7 @@ public class NativeAdViewContainer extends ReactViewGroup implements AppEventLis
     protected NativeCustomFormatAd nativeCustomTemplateAd;
     protected String nativeCustomTemplateAdClickableAsset;
     protected ThemedReactContext context;
+    protected Boolean disablePersonalizedAds;
     String[] testDevices;
     String adUnitID;
     AdSize[] validAdSizes;
@@ -261,6 +262,11 @@ public class NativeAdViewContainer extends ReactViewGroup implements AppEventLis
                     Bundle bundle = new Bundle();
                     bundle.putString("correlator", correlator);
 
+                    if (this.disablePersonalizedAds) {
+                        bundle.putString("npa", "1");
+                    } else {
+                        bundle.putString("npa", "0");
+                    }
                     adRequestBuilder.addNetworkExtrasBundle(AdMobAdapter.class, bundle);
 
                     Bundle fbExtras = new FacebookExtras()
@@ -632,6 +638,10 @@ public class NativeAdViewContainer extends ReactViewGroup implements AppEventLis
 
     public void setCustomClickTemplateIds(String[] customClickTemplateIds) {
         this.customClickTemplateIds = Arrays.asList(customClickTemplateIds);
+    }
+
+    public void setDisablePersonalizedAds(Boolean disablePersonalizedAds) {
+        this.disablePersonalizedAds = disablePersonalizedAds;
     }
 
     @Override

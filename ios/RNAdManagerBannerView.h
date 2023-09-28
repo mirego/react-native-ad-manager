@@ -9,6 +9,7 @@
 @property (nonatomic, copy) NSString *adSize;
 @property (nonatomic, strong) NSString *adUnitID;
 @property (nonatomic, copy) NSString *correlator;
+@property (nonatomic) BOOL disablePersonalizedAds;
 
 @property (nonatomic, copy) RCTBubblingEventBlock onSizeChange;
 @property (nonatomic, copy) RCTBubblingEventBlock onAppEvent;
