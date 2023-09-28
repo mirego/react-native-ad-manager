@@ -61,7 +61,6 @@ public class NativeAdViewContainer extends ReactViewGroup implements AppEventLis
     protected NativeCustomFormatAd nativeCustomTemplateAd;
     protected String nativeCustomTemplateAdClickableAsset;
     protected ThemedReactContext context;
-    protected Boolean disablePersonalizedAds;
     String[] testDevices;
     String adUnitID;
     AdSize[] validAdSizes;
@@ -77,6 +76,7 @@ public class NativeAdViewContainer extends ReactViewGroup implements AppEventLis
     String publisherProvidedID;
     Location location;
     String correlator;
+    Boolean disablePersonalizedAds;
     List<String> customClickTemplateIds;
 
     /**
