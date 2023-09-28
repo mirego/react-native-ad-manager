@@ -37,6 +37,7 @@ interface INativeAdPropsBase extends ViewProps {
   validAdTypes?: ('banner' | 'native' | 'template')[];
   customClickTemplateIds?: string[];
   targeting?: IAdManagerTargeting;
+  disablePersonalizedAds?: boolean;
 }
 
 interface INativeAdNativeProps extends INativeAdPropsBase {
@@ -86,9 +87,9 @@ interface INativeAdState {
     height?: number;
   };
   nativeAd?:
-    | IAdManagerEventLoadedBanner
-    | IAdManagerEventLoadedTemplate
-    | IAdManagerEventLoadedNative;
+  | IAdManagerEventLoadedBanner
+  | IAdManagerEventLoadedTemplate
+  | IAdManagerEventLoadedNative;
 }
 
 const areSetsEqual = (
@@ -108,9 +109,9 @@ const NativeAdView =
   UIManager.getViewManagerConfig(ComponentName) != null
     ? requireNativeComponent<INativeAdNativeProps>(ComponentName)
     : () => {
-        // eslint-disable-next-line no-undef
-        throw new Error(LINKING_ERROR);
-      };
+      // eslint-disable-next-line no-undef
+      throw new Error(LINKING_ERROR);
+    };
 
 export default (Component: JSXElementConstructor<any>) =>
   class NativeAdWrapper extends React.Component<
@@ -179,9 +180,9 @@ export default (Component: JSXElementConstructor<any>) =>
     ) {
       if (
         Object.entries(this.state).toString() ===
-          Object.entries(nextState).toString() &&
+        Object.entries(nextState).toString() &&
         Object.entries(this.props).toString() ===
-          Object.entries(nextProps).toString()
+        Object.entries(nextProps).toString()
       ) {
         return false;
       }
@@ -249,6 +250,7 @@ export default (Component: JSXElementConstructor<any>) =>
           adSize={this.props.adSize}
           loaderIndex={this.props.adLoaderIndex}
           correlator={this.props.correlator}
+          disablePersonalizedAds={this.props.disablePersonalizedAds}
           customTemplateIds={this.props.customTemplateIds}
           validAdSizes={this.props.validAdSizes}
           validAdTypes={this.props.validAdTypes}
