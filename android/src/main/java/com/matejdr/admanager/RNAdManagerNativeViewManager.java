@@ -36,7 +36,7 @@ public class RNAdManagerNativeViewManager extends ViewGroupManager<NativeAdViewC
     public static final String PROP_VALID_AD_TYPES = "validAdTypes";
     public static final String PROP_TARGETING = "targeting";
     public static final String PROP_CORRELATOR = "correlator";
-    public static final boolean PROP_DISABLE_PERSONALIZED_ADS = "disablePersonalizedAds";
+    public static final String PROP_DISABLE_PERSONALIZED_ADS = "disablePersonalizedAds";
 
     public static final String EVENT_AD_LOADED = "onAdLoaded";
     public static final String EVENT_SIZE_CHANGE = "onSizeChange";
