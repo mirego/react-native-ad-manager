@@ -50,6 +50,7 @@ interface IAdManagerBannerPropsBase extends ViewProps {
   testDevices?: string[];
 
   targeting?: IAdManagerTargeting;
+  disablePersonalizedAds?: boolean;
 }
 
 interface IAdManagerBannerProps extends IAdManagerBannerPropsBase {
@@ -93,8 +94,8 @@ const AdManagerBannerView =
   UIManager.getViewManagerConfig(ComponentName) != null
     ? requireNativeComponent<IAdManagerBannerNativeProps>(ComponentName)
     : () => {
-        throw new Error(LINKING_ERROR);
-      };
+      throw new Error(LINKING_ERROR);
+    };
 
 export class Banner extends React.Component<
   IAdManagerBannerProps,
@@ -114,9 +115,9 @@ export class Banner extends React.Component<
   ) {
     if (
       Object.entries(this.state.style).toString() ===
-        Object.entries(nextState.style).toString() &&
+      Object.entries(nextState.style).toString() &&
       Object.entries(this.props).toString() ===
-        Object.entries(nextProps).toString()
+      Object.entries(nextProps).toString()
     ) {
       return false;
     }

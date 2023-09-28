@@ -64,6 +64,11 @@
   _correlator = correlator;
 }
 
+- (void)setDisablePersonalizedAds:(BOOL)disablePersonalizedAds
+{
+    _disablePersonalizedAds = disablePersonalizedAds;
+}
+
 // Initialise BannerAdView as soon as all the props are set
 - (void)createViewIfCan
 {
@@ -100,6 +105,15 @@
     extras.additionalParameters = [[NSDictionary alloc] initWithObjectsAndKeys:
                                    _correlator, @"correlator",
                                    nil];
+
+    if (_disablePersonalizedAds) {
+        NSLog(@"[GAM - Banner] Requesting non-personalized ads");
+        extras.additionalParameters = @{@"npa": @"1"};
+    } else {
+        NSLog(@"[GAM - Banner] Requesting personalized ads");
+        extras.additionalParameters = @{@"npa": @"0"};
+    }
+
     [request registerAdNetworkExtras:extras];
 
     if (_targeting != nil) {

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -46,6 +47,7 @@ class BannerAdView extends ReactViewGroup implements AppEventListener, Lifecycle
     String publisherProvidedID;
     Location location;
     String correlator;
+    Boolean disablePersonalizedAds;
 
     int top;
     int left;
@@ -231,6 +233,14 @@ class BannerAdView extends ReactViewGroup implements AppEventListener, Lifecycle
         Bundle bundle = new Bundle();
         bundle.putString("correlator", correlator);
 
+        if (this.disablePersonalizedAds) {
+            Log.i("GAM - Banner", "Requesting non-personalized ads");
+            bundle.putString("npa", "1");
+        } else {
+            Log.i("GAM - Banner", "Requesting personalized ads");
+            bundle.putString("npa", "0");
+        }
+
         adRequestBuilder.addNetworkExtrasBundle(AdMobAdapter.class, bundle);
 
 
@@ -328,6 +338,10 @@ class BannerAdView extends ReactViewGroup implements AppEventListener, Lifecycle
 
     public void setCorrelator(String correlator) {
         this.correlator = correlator;
+    }
+
+    public void setDisablePersonalizedAds(Boolean disablePersonalizedAds) {
+        this.disablePersonalizedAds = disablePersonalizedAds;
     }
 
     @Override
