@@ -61,6 +61,7 @@ interface INativeAdNativeProps extends INativeAdPropsBase {
   onAdCustomClick?: (
     event: NativeSyntheticEvent<IAdManagerEventCustomClick>
   ) => void;
+  onAdRecordImpression?: (event: NativeSyntheticEvent<IAdManagerEventBase>) => void;
 }
 
 interface INativeAdProps extends INativeAdPropsBase {
@@ -78,6 +79,7 @@ interface INativeAdProps extends INativeAdPropsBase {
   onAdOpened?: (event: IAdManagerEventBase) => void;
   onAdClosed?: (event: IAdManagerEventBase) => void;
   onAdCustomClick?: (event: IAdManagerEventCustomClick) => void;
+  onAdRecordImpression?: (event: IAdManagerEventBase) => void;
 }
 
 interface INativeAdState {
@@ -274,6 +276,9 @@ export default (Component: JSXElementConstructor<any>) =>
           onAdCustomClick={(event) =>
             this.props.onAdCustomClick &&
             this.props.onAdCustomClick(event.nativeEvent)
+          }
+          onAdRecordImpression={(event) =>
+            this.props.onAdRecordImpression && this.props.onAdRecordImpression(event.nativeEvent)
           }
           targeting={this.props.targeting}
           customClickTemplateIds={this.props.customClickTemplateIds}
